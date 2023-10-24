@@ -1,6 +1,6 @@
 package org.Lektion_23_10_2023.Metoder;
 
-public class Uppgift6 {
+public class Uppgift6_10 {
 
     public static void main(String[] args) {
         //printQuote();
