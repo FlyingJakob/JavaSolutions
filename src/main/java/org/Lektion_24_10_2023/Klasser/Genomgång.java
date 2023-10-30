@@ -8,6 +8,12 @@ public class Genomgång {
 
         Bil minBil = new Bil("Blå",2010,"Den coola bilen");
 
+
+        minBil.setYear(2016);
+
+        System.out.println(minBil.getYear());
+
+
     }
 
 
