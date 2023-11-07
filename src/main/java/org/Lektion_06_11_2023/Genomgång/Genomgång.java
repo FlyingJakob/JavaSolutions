@@ -5,10 +5,14 @@ public class Genomgång {
 
     public static void main(String[] args) {
 
-        Dog dog = new Dog();
+        Vehicle myTruck = new Truck();
+        Vehicle myCar = new Car();
 
+        Vehicle[] myVehicles = {myTruck,myCar};
 
-        dog.eat();
-        dog.sit();
+        for (int i = 0; i < myVehicles.length; i++) {
+            myVehicles[i].startEngine();
+        }
+
     }
 }

@@ -7,7 +7,7 @@ public class Uppgift12 {
         Animal myCat = new Cat("Katt",4,"Cat");
 
 
-        cuddleIfPet(myCat);
+        cuddleIfPet(myDog);
 
     }
 
