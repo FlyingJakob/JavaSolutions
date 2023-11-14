@@ -8,8 +8,8 @@ public class Square extends Shape implements Resizable{
     }
 
     @Override
-    public void resize(double factor) {
-        side=side*factor;
+    public String printInformation() {
+        return "This square has a side of "+side;
     }
 
     @Override

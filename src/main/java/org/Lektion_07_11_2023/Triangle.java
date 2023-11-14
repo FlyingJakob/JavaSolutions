@@ -20,4 +20,9 @@ public class Triangle extends Shape
     public void printArea() {
         System.out.println("Triangle area = "+base*height/2);
     }
+
+    @Override
+    public String printInformation() {
+        return "This triangle has a base of "+base+" and a height of "+height;
+    }
 }

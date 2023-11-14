@@ -8,6 +8,12 @@ public class Car extends Vehicle implements Drivable,Flyable{
     }
 
     @Override
+    public void honk() {
+        super.honk();
+        System.out.println("car honks");
+    }
+
+    @Override
     public void drive() {
         System.out.println("The car is driving");
     }
