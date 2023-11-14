@@ -24,5 +24,19 @@ public class CalculatorTest {
         assertEquals(-50,result2);
     }
 
+    @Test
+    public void TestDiv(){
+        Calculator calculator = new Calculator();
+        double result = calculator.divide(5,2);
+        assertEquals(2.5,result);
+    }
+
+    @Test
+    public void TestSub(){
+        Calculator calculator = new Calculator();
+        int result = calculator.subtract(9,5);
+        assertEquals(4,result);
+    }
+
 
 }
