@@ -5,7 +5,9 @@ import java.sql.*;
 public class Databaser {
     public static void main(String[] args) {
         //createDatabase();
-        addStudent("Lisa",11,"B");
+        //addStudent("Lisa",11,"A");
+        //updateAge("Lisa",100);
+        deleteStudent("Kalle");
         printStudents();
     }
 
@@ -67,5 +69,36 @@ public class Databaser {
         }
     }
 
+    public static void updateAge(String name,int newAge){
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:school.db");
+            String sql = "UPDATE students " +
+                    "SET age = ? " +
+                    "WHERE name = ?";
 
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt.setInt(1,newAge);
+            pstmt.setString(2,name);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void deleteStudent(String name){
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:school.db");
+            String sql = "DELETE FROM students WHERE name = ?";
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1,name);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
