@@ -3,6 +3,7 @@ package org.Lektion_14_11_2023;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
 
@@ -27,8 +28,13 @@ public class CalculatorTest {
     @Test
     public void TestDiv(){
         Calculator calculator = new Calculator();
-        double result = calculator.divide(5,2);
-        assertEquals(2.5,result);
+
+        assertThrows(ArithmeticException.class,() ->{
+            double result = calculator.divide(5,0);
+        });
+
+
+
     }
 
     @Test
