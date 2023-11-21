@@ -11,6 +11,7 @@ public class UserSystem {
             Scanner scanner = new Scanner(System.in);
             System.out.println("(1) Login");
             System.out.println("(2) Register");
+            System.out.println("(3) Change Password");
             String choice = scanner.nextLine();
 
             switch (choice){
@@ -38,7 +39,16 @@ public class UserSystem {
                     }else {
                         System.out.println("Registration failed");
                     }
+                    break;
 
+                case "3":
+                    System.out.println("____Change password____");
+                    System.out.println("Username : ");
+                    String username2 = scanner.nextLine();
+                    System.out.println("Password : ");
+                    String password2 = scanner.nextLine();
+                    changePassword(username2,password2);
+                    break;
             }
         }
     }
@@ -64,23 +74,24 @@ public class UserSystem {
     public static boolean login(String username,String password){
 
         try{
-            Connection conn = DriverManager.getConnection("jdbc:sqlite:school.db");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:userRepo.db");
             String sql = "SELECT password FROM users WHERE username = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,username);
 
             //Execute the query
-            ResultSet rs = preparedStatement.executeQuery(sql);
-
+            ResultSet rs = preparedStatement.executeQuery();
             //Get the first result i.e the user selected from the query.
             if (rs.next()){
-
                 //Get the password for the user with 'username'
                 String correctPassword = rs.getString("password");
+                if (correctPassword.equals(password)){
+                    conn.close();
+                    rs.close();
+                    preparedStatement.close();
+                    return true;
+                }
 
-                //Check if password is correct. Then return true otherwise false
-            }else {
-                //There were no results in the result set, meaning that there is no user with that username
-                //Maybe return false?
             }
 
             rs.close();
@@ -90,6 +101,7 @@ public class UserSystem {
             return false;
 
         }catch (Exception e){
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -97,11 +109,46 @@ public class UserSystem {
     //Save the username and password in the database.
     public static boolean register(String username,String password){
 
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:userRepo.db");
+            String sql = "INSERT INTO users(username, password) VALUES(?, ?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,username);
+            pstmt.setString(2,password);
+            pstmt.executeUpdate();
+
+            conn.close();
+            pstmt.close();
 
 
-        return false;
+            return true;
+
+        } catch (SQLException e) {
+            return false;
+        }
+
     }
 
+    public static boolean changePassword(String username,String newPassword){
+        try{
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:userRepo.db");
+            String sql = "UPDATE users " +
+                    "SET password = ? " +
+                    "WHERE username = ?";
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,newPassword);
+            preparedStatement.setString(2,username);
+
+            preparedStatement.executeUpdate();
+
+            return true;
+
+
+        }catch (Exception e){
+            return false;
+        }
+    }
 
 
 

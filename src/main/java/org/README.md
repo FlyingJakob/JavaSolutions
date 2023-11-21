@@ -1,0 +1,1 @@
+<h1>TestAdd:</h1> This method tests the add method of the calculator
