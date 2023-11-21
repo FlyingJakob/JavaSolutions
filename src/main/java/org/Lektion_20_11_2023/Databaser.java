@@ -6,8 +6,10 @@ public class Databaser {
     public static void main(String[] args) {
         //createDatabase();
         //addStudent("Lisa",11,"A");
+        //addStudent("jakob",11,"A");
+        //addStudent("kalle",11,"A");
         //updateAge("Lisa",100);
-        deleteStudent("Kalle");
+        deleteStudent("Jakob' OR name = 'Lisa");
         printStudents();
     }
 
@@ -91,11 +93,11 @@ public class Databaser {
         try {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:school.db");
             String sql = "DELETE FROM students WHERE name = ?";
+            PreparedStatement stmnt = conn.prepareStatement(sql);
 
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            stmnt.setString(1,name);
+            stmnt.execute(sql);
 
-            pstmt.setString(1,name);
-            pstmt.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
