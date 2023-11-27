@@ -17,4 +17,17 @@ public class UserSystemTest {
         assertTrue(UserSystem.login("Test1","Test"));
     }
 
+    @Test
+    public void TestChangePassword(){
+        UserSystem.changePassword("Test1","NewPass");
+
+        assertTrue(UserSystem.login("Test1","NewPass"));
+        assertFalse(UserSystem.login("Test1","Test"));
+
+        UserSystem.changePassword("Test1","Test");
+        assertTrue(UserSystem.login("Test1","Test"));
+
+    }
+
+
 }

@@ -150,7 +150,9 @@ public class UserSystem {
         }
     }
 
+    public static void deleteUser(String username){
 
+    }
 
 
 }
