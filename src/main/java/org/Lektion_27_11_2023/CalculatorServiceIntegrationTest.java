@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class CalculatorServiceIntegrationTest {
     @Test
@@ -37,13 +38,8 @@ public class CalculatorServiceIntegrationTest {
     public void testDivideFunctionLogsCorrectly(){
         LoggingService mockLoggingService = Mockito.mock(LoggingService.class);
         CalculatorService calculatorService = new CalculatorService(mockLoggingService);
-
         assertThrows(ArithmeticException.class,() -> calculatorService.divide(5,0));
-
         verify(mockLoggingService).logError("Cannot divide with zero");
-
-
     }
-
 
 }
