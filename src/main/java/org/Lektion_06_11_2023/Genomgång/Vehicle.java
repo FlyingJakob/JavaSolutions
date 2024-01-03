@@ -4,6 +4,10 @@ public class Vehicle {
     public String registration;
     String type;
 
+    public void honk(){
+        System.out.println("Honk");
+    }
+
     public void startEngine(){
         System.out.println("The vehicle is starting");
     }

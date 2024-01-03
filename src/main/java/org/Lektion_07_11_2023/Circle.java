@@ -19,6 +19,11 @@ public class Circle extends Shape implements Resizable{
     }
 
     @Override
+    public String printInformation() {
+        return "This circle has a radius of "+radius;
+    }
+
+    @Override
     public void resize(double factor) {
         radius = radius*factor;
     }

@@ -13,9 +13,10 @@ public class Uppgift4 {
 
         for (int i = 0; i < myShapeList.size(); i++) {
 
+
             if (myShapeList.get(i) instanceof Resizable){
                 System.out.println("resizable");
-                ((Resizable) myShapeList.get(i)).resize(2);
+                ((Resizable)myShapeList.get(i)).resize(2);
             }else {
                 System.out.println("Not resizable");
             }

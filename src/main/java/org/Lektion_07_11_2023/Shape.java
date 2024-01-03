@@ -6,6 +6,8 @@ public abstract class Shape {
 
     public abstract void printArea();
 
+    public abstract String printInformation();
+
 
     public static void main(String[] args) {
 
