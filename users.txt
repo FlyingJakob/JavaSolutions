@@ -1,2 +1,4 @@
 Jakob;123;true
 Kalle;155;false
+hejsan;123;true
+lisa;123;false

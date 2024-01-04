@@ -25,21 +25,44 @@ public class UserSystem {
 
 
     public User login(String username,String password){
+        User user = getUser(username);
 
-        //Kolla om det är rätt lösenord
+        if (user==null){
+            return null;
+        }
 
-
-        return null;
+        if (user.getPassword().equals(password)){
+            return user;
+        }else{
+            return null;
+        }
     }
 
     public User register(String username,String password,boolean isAdmin){
 
-        if (isAdmin){
-            return new AdminUser(....);
-        }else {
-            return new MemberUser(....);
+        if (getUser(username)!=null){
+            return null;
         }
 
+        User user = null;
+
+        if (isAdmin){
+            user = new AdminUser(username,password);
+        }else{
+            user = new MemberUser(username,password);
+        }
+
+        userList.add(user);
+        SaveUsers();
+        return user;
+    }
+
+    private User getUser(String username){
+        for (User user: userList) {
+            if (user.getUsername().equals(username)){
+                return user;
+            }
+        }
         return null;
     }
 

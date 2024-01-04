@@ -78,25 +78,29 @@ public class LibraryCatalog {
     }
 
     public void RemoveBook(String isbn){
-        Book bookToRemove = FindBookByISBN(isbn);
-        RemoveBook(bookToRemove);
+        List<Book> bookToRemove = FindBookByISBN(isbn);
+        RemoveBook(bookToRemove.get(0));
     }
 
 
-    public Book FindBookByTitle(String title){
+    public List<Book> FindBookByTitle(String title){
         for (Book book: bookList) {
             if (book.getTitle().equals(title)){
-                return book;
+                List<Book> books = new ArrayList<>();
+                books.add(book);
+                return books;
             }
         }
         return null;
     }
 
-    public Book FindBookByISBN(String ISBN){
+    public List<Book> FindBookByISBN(String ISBN){
         for (Book book: bookList) {
 
             if (book.getISBN().equals(ISBN)){
-                return book;
+                List<Book> books = new ArrayList<>();
+                books.add(book);
+                return books;
             }
         }
         return null;
