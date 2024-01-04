@@ -4,6 +4,17 @@ public class Book {
     private String title;
     private String author;
     private String ISBN;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", ISBN='" + ISBN + '\'' +
+                ", isAvailable=" + isAvailable +
+                '}';
+    }
+
     private boolean isAvailable;
 
     public Book(String title, String author, String ISBN, boolean isAvailable) {
@@ -43,5 +54,16 @@ public class Book {
 
     public void setAvailable(boolean available) {
         isAvailable = available;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Book book = (Book)obj;
+
+        if (book.getAuthor().equals(this.getAuthor()) && book.getISBN().equals(this.getISBN()) && book.getTitle().equals(this.getTitle())){
+            return true;
+        }else {
+            return false;
+        }
     }
 }
