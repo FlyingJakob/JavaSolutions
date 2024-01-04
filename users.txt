@@ -1,0 +1,2 @@
+Jakob;123;true
+Kalle;155;false
